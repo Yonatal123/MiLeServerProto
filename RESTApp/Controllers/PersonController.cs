@@ -35,6 +35,7 @@ namespace RESTApp.Controllers
             }
 
                 return namesList;
+            conn.Close();
         }
 
         // GET: api/Person/5
@@ -46,11 +47,22 @@ namespace RESTApp.Controllers
         // POST: api/Person
         public void Post([FromBody]string value)
         {
+
         }
 
         // PUT: api/Person/5
         public void Put(int id, [FromBody]string value)
         {
+            
+        }
+
+        public void Put([FromBody]string person)
+        {
+            string query = "INSERT INTO Contacts(Id, Name) VALUES(7, 'David')";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
 
         // DELETE: api/Person/5
